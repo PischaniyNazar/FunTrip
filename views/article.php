@@ -18,6 +18,7 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="admin">Панель администратора</a></li>
+                        <li><a href="reg.php">Реєстрація</a></li>
                     </ul>
                 </div>
             </nav> 

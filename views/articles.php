@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <hmtl>
     <head>
@@ -16,7 +19,27 @@
                         <a id="blog" class="navbar-brand" href="index.php">Блог</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="admin">Панель администратора</a></li>
+                    <?php
+                    if (empty($_SESSION['login']) or empty($_SESSION['id']))
+    {?>
+    <ul class="nav navbar-nav navbar-right">
+    <li><a href="admin">Панель администратора</a></li>
+    <li><a href="views/log.php">Вхід</a></li>
+    <li><a href="views/reg.php">Реєстрація</a></li>
+   <?php }
+    else
+    {?>
+        <ul class="nav navbar-nav navbar-right">
+    <li><a href="#"><?php echo $_SESSION['login']?></a></li>
+    <li><a href="../models/exit.php">Вихід</a></li>
+    
+    <?php
+}
+?>
+                    
+                        
+                        
+                        
                     </ul>
                 </div>
             </nav> 
