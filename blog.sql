@@ -30,6 +30,7 @@ CREATE TABLE `articles` (
   `id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `content` text CHARACTER SET utf8 NOT NULL,
+  `category` text(25) CHARACTER SET utf8 NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
