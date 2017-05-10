@@ -32,7 +32,7 @@
         return $article;
     }
 
-    function articles_new($link, $title, $date, $content){
+    function articles_new($link, $title, $category, $date, $content){
         // Подготовка
         $title = trim($title);
         $content = trim($content);
@@ -42,10 +42,11 @@
             return false;
         
         // Запрос
-        $template_add = "INSERT INTO articles (title, date, content) VALUES ('%s', '%s', '%s')";
+        $template_add = "INSERT INTO articles (title, category, date, content) VALUES ('%s','%s', '%s', '%s')";
         
         $query = sprintf($template_add, 
                          mysqli_real_escape_string($link, $title),
+                         mysqli_real_escape_string($link, $category),
                          mysqli_real_escape_string($link, $date),
                          mysqli_real_escape_string($link, $content));
         

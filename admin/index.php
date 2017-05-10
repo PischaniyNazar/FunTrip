@@ -5,6 +5,7 @@
     $link = db_connect();
     
     $article['title']='';
+    $article['category']='';
     $article['date']='';
     $article['content']='';
 
@@ -15,7 +16,7 @@
     
     if($action == "add"){
         if(!empty($_POST)){
-            articles_new($link, $_POST['title'], $_POST['date'], $_POST['content']);
+            articles_new($link, $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content']);
             header("Location: index.php");
         }
         include("../views/article_admin.php");
@@ -25,7 +26,7 @@
         $id = (int)$_GET['id'];
         
         if(!empty($_POST) && $id > 0) {
-            articles_edit($link, $id, $_POST['title'], $_POST['date'], $_POST['content']);
+            articles_edit($link, $id, $_POST['title'],  $_POST['date'], $_POST['content']);
             header("Location: index.php");
         }
         

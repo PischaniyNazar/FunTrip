@@ -6,9 +6,9 @@
     <head>
         <meta charset="utf-8">
         <title>Блог</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="../css/bootstrap.css" rel="stylesheet">
     </head>
     <body>
         <!-- Page div -->
@@ -57,5 +57,9 @@
             <!-- END Footer -->
         </div>
         <!-- END Page div -->
+         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.js"></script>
     </body>
 </hmtl>
