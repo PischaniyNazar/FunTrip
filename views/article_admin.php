@@ -30,8 +30,8 @@
                         <select id="basic" class="selectpicker show-tick form-control" data-live-search="true" 
                         name="category" value="<?=$article['category']?>">
                             <optgroup label="Розваги">
-                                <option >Кінотеатри</option>
-                                <option >Цирки/Атракціони</option>
+                                <option>Кінотеатри</option>
+                                <option>Цирки/Атракціони</option>
                                 <option>Зоопарки</option>
                                 <option >Бари/Нічні клуби</option>
                             </optgroup>    
@@ -39,7 +39,7 @@
                                 <option>Зони відпочинку</option>
                                 <option>Музеї/Галереї</option>
                                 <option>Церкви/Храми</option>
-                                <option>Пам'ятки</option>
+                                <option>Пам`ятки</option>
                                 <option>Кемпінги</option>
                                 <option>Парки/Сади</option>
                             </optgroup>

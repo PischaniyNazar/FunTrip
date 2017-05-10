@@ -26,7 +26,7 @@
         $id = (int)$_GET['id'];
         
         if(!empty($_POST) && $id > 0) {
-            articles_edit($link, $id, $_POST['title'],  $_POST['date'], $_POST['content']);
+            articles_edit($link, $id, $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content']);
             header("Location: index.php");
         }
         

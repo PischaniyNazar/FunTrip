@@ -44,6 +44,7 @@
             <!-- Content -->
             <div class="article">
                 <h3><?=$article['title']?></h3>
+                <b>Категория:</b> <?=$article['category']?><br>
                 <em>Опубликованно: <?=$article['date']?></em>
                 <p><?=$article['content']?></p>
             </div>

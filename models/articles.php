@@ -20,6 +20,25 @@
         return $articles;
     }
 
+    function view_category($link, $category){
+    // Формируем запрос
+        $query = "SELECT * FROM articles WHERE category='".$category."'";
+        $result = mysqli_query($link, $query);
+        
+        if(!$result)
+            die(mysqli_error($link));
+        
+        $n = mysqli_num_rows($result);
+        $category = array();
+        for ($i = 0; $i < $n; $i++)
+        {
+            $row = mysqli_fetch_assoc($result);
+            $category[] = $row;
+        }
+        
+        return $category;  
+    }
+
     function article_get($link, $id_article){
         $query = sprintf("SELECT * FROM articles WHERE id=%d", (int)$id_article);
         $result = mysqli_query($link, $query);
@@ -59,9 +78,10 @@
         return true;
     }
 
-    function articles_edit($link, $id, $title, $date, $content){
+    function articles_edit($link, $id, $title, $category, $date, $content){
         // Подготовка
         $title = trim($title);
+        $category = trim($category);
         $content = trim($content);
         $date = trim($date);
         $id = (int)$id;
@@ -71,10 +91,11 @@
             return false;
         
         // Запрос
-        $template_update = "UPDATE articles SET title='%s', content='%s', date='%s' WHERE id='%d'";
+        $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s' WHERE id='%d'";
             
         $query = sprintf($template_update, 
                          mysqli_real_escape_string($link, $title),
+                         mysqli_real_escape_string($link, $category),
                          mysqli_real_escape_string($link, $content),
                          mysqli_real_escape_string($link, $date),
                          $id);

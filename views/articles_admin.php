@@ -25,6 +25,7 @@
                 <tr>
                     <th>Дата</th>
                     <th>Заголовок</th>
+                    <th>Категория</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -32,6 +33,7 @@
                     <tr>
                         <td><?=$article['date']?></td>
                         <td><?=articles_intro($article['title'], 80)?></td>
+                        <td><?=$article['category']?></td>
                         <td>
                             <a href="index.php?action=edit&id=<?=$article['id']?>">Редактировать</a>
                         </td>

@@ -45,32 +45,32 @@
                     <div class="col-md-3">
                         <ul class="nav nav-list list-group">
                             <li class="nav-header">Розваги</li>
-                                <li><a href="#" class="list-group-item"> Кінотеатри</a></li>
-                                <li><a href="#" class="list-group-item"> Цирки/Атракціони</a></li>
-                                <li><a href="#" class="list-group-item"> Зоопарки</a></li>
-                                <li><a href="#" class="list-group-item"> Бари/Нічні клуби</a></li>
+                                <li><a href="views/tur_category.php?category=Кінотеатри" class="list-group-item">Кінотеатри</a></li>
+                                <li><a href="views/tur_category.php?category=Цирки/Атракціони" class="list-group-item">Цирки/Атракціони</a></li>
+                                <li><a href="views/tur_category.php?category=Зоопарки" class="list-group-item">Зоопарки</a></li>
+                                <li><a href="views/tur_category.php?category=Бари/Нічні клуби" class="list-group-item">Бари/Нічні клуби</a></li>
                             <li class="nav-header">Відпочинок/Релігія</li>
-                                <li><a href="#" class="list-group-item"> Зони відпочинку</a></li>
-                                <li><a href="#" class="list-group-item"> Музеї/Галереї</a></li>
-                                <li><a href="#" class="list-group-item"> Церкви/Храми</a></li>
-                                <li><a href="#" class="list-group-item"> Пам'ятки</a></li>
-                                <li><a href="#" class="list-group-item"> Кемпінги</a></li>
-                                <li><a href="#" class="list-group-item"> Парки/Сади</a></li>
+                                <li><a href="views/tur_category.php?category=Зони відпочинку" class="list-group-item">Зони відпочинку</a></li>
+                                <li><a href="views/tur_category.php?category=Музеї/Галереї" class="list-group-item">Музеї/Галереї</a></li>
+                                <li><a href="views/tur_category.php?category=Церкви/Храми" class="list-group-item">Церкви/Храми</a></li>
+                                <li><a href="views/tur_category.php?category=Пам`ятки" class="list-group-item">Пам`ятки</a></li>
+                                <li><a href="views/tur_category.php?category=Кемпінги" class="list-group-item">Кемпінги</a></li>
+                                <li><a href="views/tur_category.php?category=Парки/Сади" class="list-group-item">Парки/Сади</a></li>
                             <li class="nav-header">Спорт</li>
-                                <li><a href="#" class="list-group-item"> Стадіони</a></li>
-                                <li><a href="#" class="list-group-item"> Спорт, фітнес</a></li>
-                                <li><a href="#" class="list-group-item"> Ковзанки</a></li>
-                                <li><a href="#" class="list-group-item"> Басейни</a></li>
-                                <li><a href="#" class="list-group-item"> Боулінг</a></li>
-                                <li><a href="#" class="list-group-item"> Лижні центри</a></li>
-                                <li><a href="#" class="list-group-item"> Гольф-клуби</a></li>
+                                <li><a href="views/tur_category.php?category=Стадіони" class="list-group-item">Стадіони</a></li>
+                                <li><a href="views/tur_category.php?category=Спорт, фітнес" class="list-group-item">Спорт, фітнес</a></li>
+                                <li><a href="views/tur_category.php?category=Ковзанки" class="list-group-item">Ковзанки</a></li>
+                                <li><a href="views/tur_category.php?category=Басейни" class="list-group-item">Басейни</a></li>
+                                <li><a href="views/tur_category.php?category=Боулінг" class="list-group-item">Боулінг</a></li>
+                                <li><a href="views/tur_category.php?category=Лижні центри" class="list-group-item">Лижні центри</a></li>
+                                <li><a href="views/tur_category.php?category=Гольф-клуби" class="list-group-item">Гольф-клуби</a></li>
                             <li class="nav-header">Продукти</li>
-                                <li><a href="#" class="list-group-item"> Ресторани/Фастфуди</a></li>
-                                <li><a href="#" class="list-group-item"> Кафе</a></li>
-                                <li><a href="#" class="list-group-item"> Піцерії</a></li>
-                                <li><a href="#" class="list-group-item"> Бари</a></li>
+                                <li><a href="views/tur_category.php?category=Ресторани/Фастфуди" class="list-group-item">Ресторани/Фастфуди</a></li>
+                                <li><a href="views/tur_category.php?category=Кафе" class="list-group-item">Кафе</a></li>
+                                <li><a href="views/tur_category.php?category=Піцерії" class="list-group-item">Піцерії</a></li>
+                                <li><a href="views/tur_category.php?category=Бари" class="list-group-item">Бари</a></li>
                             <li class="nav-header">Інше</li>
-                                <li><a href="#" class="list-group-item"> Інше</a></li>
+                                <li><a href="views/tur_category.php?category=Інше" class="list-group-item">Інше</a></li>
                         </ul>
                         
                     </div>
@@ -79,6 +79,7 @@
                         <?php foreach($articles as $article): ?>
                         <div class="article">
                             <h3><a href="article.php?id=<?=$article['id']?>"><?=$article['title']?></a></h3>
+                            <b>Категория:</b> <?=$article['category']?><br>
                             <em>Опубликованно: <?=$article['date']?></em>
                             <p><?=articles_intro($article['content'])?></p>
                         </div>
