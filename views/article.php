@@ -47,6 +47,7 @@
                 <b>Категория:</b> <?=$article['category']?><br>
                 <em>Опубликованно: <?=$article['date']?></em>
                 <p><?=$article['content']?></p>
+                <img class="img-responsive img-thumbnail" src="<?=$article['image']?>" alt="Зображення">
             </div>
             <!-- END Content -->
             <!-- Footer -->

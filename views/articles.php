@@ -75,13 +75,16 @@
                         
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <?php foreach($articles as $article): ?>
-                        <div class="article">
+                        <div class="article col-md-9">
                             <h3><a href="article.php?id=<?=$article['id']?>"><?=$article['title']?></a></h3>
                             <b>Категория:</b> <?=$article['category']?><br>
                             <em>Опубликованно: <?=$article['date']?></em>
                             <p><?=articles_intro($article['content'])?></p>
+                        </div>
+                        <div class="article col-md-2">
+                            <img class=" article img-responsive img-thumbnail" src="<?=$article['image']?>" alt="Зображення">
                         </div>
                         <?php endforeach ?>
                     </div>

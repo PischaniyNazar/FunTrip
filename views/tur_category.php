@@ -75,7 +75,7 @@
                       
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <?php 
                         require_once("../database.php");
                         require_once("../models/articles.php");
@@ -84,11 +84,14 @@
                         $category = view_category($link, $_GET["category"]);
                      
                         foreach($category as $categories): ?>
-                        <div class="article">
+                        <div class="article col-md-9">
                             <h3><a href="../article.php?id=<?=$categories['id']?>"><?=$categories['title']?></a></h3>
                             <b>Категория:</b> <?=$categories['category']?><br>
                             <em>Опубликованно: <?=$categories['date']?></em>
                             <p><?=articles_intro($categories['content'])?></p>
+                        </div>
+                        <div class="article col-md-2">
+                            <img class=" article img-responsive img-thumbnail" src="<?=$categories['image']?>" alt="Зображення">
                         </div>
                         <?php endforeach ?>
                     </div>

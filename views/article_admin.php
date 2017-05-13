@@ -19,8 +19,9 @@
                 </div>
             </nav> 
             <!-- END Header (navbar) -->
+            
             <div id="addart">
-                <form method="post" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
+                <form method="post" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>" ENCTYPE="multipart/form-data">
                     <label>
                         Название
                         <input type="text" name="title" value="<?=$article['title']?>" class="form-item" autofocus required>
@@ -71,6 +72,10 @@
                         Содержимое
                         <textarea class="form-item" name="content" required><?=$article['content']?></textarea>
                     </label>
+                    <p>
+                      <label>Виберіть фотографію. Зображення має бути формату jpg, gif або png:<br></label>
+                      <input type="file" name="userfile">
+                    </p>
                     <input type="submit" value="Сохранить" class="btn">
                 </form>
             </div>
