@@ -1,12 +1,17 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <hmtl>
     <head>
         <meta charset="utf-8">
-        <title>Блог</title>
+        <title>The tourists app</title>
          <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
         <link href="../css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/bootstrap-select.css">
+         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+         <script src="../js/index.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="container">
@@ -14,16 +19,27 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a id="blog" class="navbar-brand" href="../index.php">Блог</a>
+                        <a style="padding:5px 10px 5px 10px" class="navbar-brand" href="../index.php">
+                            <img style="width:40px; height:100%" alt="Brand" src="../map_by_artdesigner.png">
+                        </a>
+                        <a  class="navbar-brand" href="../index.php">The tourists app</a>
                     </div>
+                <ul class="nav nav-pills navbar-right">
+                        <li><a><?php echo $_SESSION['login']?></a></li>
+                        <li><a href="../models/exit.php">Вихід</a></li>
+                    </ul>    
                 </div>
             </nav> 
             <!-- END Header (navbar) -->
             
+
+
+
+
             <div id="addart">
                 <form method="post" action="index.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>" ENCTYPE="multipart/form-data">
                     <label>
-                        Название
+                        Заголовок
                         <input type="text" name="title" value="<?=$article['title']?>" class="form-item" autofocus required>
                     </label>
 
@@ -69,24 +85,31 @@
                         <input type="date" name="date" value="<?=$article['date']?>" class="form-item" required>
                     </label>
                     <label>
-                        Содержимое
+                        Опис
                         <textarea class="form-item" name="content" required><?=$article['content']?></textarea>
                     </label>
                     <p>
                       <label>Виберіть фотографію. Зображення має бути формату jpg, gif або png:<br></label>
                       <input type="file" name="userfile">
                     </p>
-                    <input type="submit" value="Сохранить" class="btn">
+
+
+                    <div id="map" style="width:100%; height:450px"></div>
+                    
+
+                    <input type="submit" value="Зберегти" class="btn">
                 </form>
             </div>
+
             <footer>
                 <p>
-                    Блог<br>Copyright &copy; 2016
+                    The tourists app<br>Copyright &copy; 2016
                 </p>
             </footer>
         </div>
          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>--!>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.js"></script>
         

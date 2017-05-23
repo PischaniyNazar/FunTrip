@@ -60,23 +60,40 @@
         // Проверка
         if ($title == '')
             return false;
-        
-        // Запрос
-        $template_add = "INSERT INTO articles (title, category, date, content, image) VALUES ('%s','%s', '%s', '%s', '%s')";
-        
-        $query = sprintf($template_add, 
-                         mysqli_real_escape_string($link, $title),
-                         mysqli_real_escape_string($link, $category),
-                         mysqli_real_escape_string($link, $date),
-                         mysqli_real_escape_string($link, $content),
-                         mysqli_real_escape_string($link, $image));
-        
-        // echo $query;
-        $result = mysqli_query($link, $query);
-        
-        if (!$result)
-            die(mysqli_error($link));
-        
+        if ($image !==null){
+            // Запрос
+            $template_add = "INSERT INTO articles (title, category, date, content, image) VALUES ('%s','%s', '%s', '%s', '%s')";
+            
+            $query = sprintf($template_add, 
+                             mysqli_real_escape_string($link, $title),
+                             mysqli_real_escape_string($link, $category),
+                             mysqli_real_escape_string($link, $date),
+                             mysqli_real_escape_string($link, $content),
+                             mysqli_real_escape_string($link, $image));
+            
+            // echo $query;
+            $result = mysqli_query($link, $query);
+            
+            if (!$result)
+                die(mysqli_error($link));
+            
+           
+        } else{
+            // Запрос
+            $template_add = "INSERT INTO articles (title, category, date, content) VALUES ('%s','%s', '%s', '%s')";
+            
+            $query = sprintf($template_add, 
+                             mysqli_real_escape_string($link, $title),
+                             mysqli_real_escape_string($link, $category),
+                             mysqli_real_escape_string($link, $date),
+                             mysqli_real_escape_string($link, $content));
+            
+            // echo $query;
+            $result = mysqli_query($link, $query);
+            
+            if (!$result)
+                die(mysqli_error($link));
+        }
         return true;
     }
 
@@ -87,27 +104,44 @@
         $content = trim($content);
         $date = trim($date);
         $id = (int)$id;
-        $image = trim($image);
+
             
         // Проверка
         if ($title == '')
             return false;
-        
-        // Запрос
-        $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s', image='%s' WHERE id='%d'";
+        if ($image !==null){
+            $image = trim($image);
+            // Запрос
+            $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s', image='%s' WHERE id='%d'";
+                
+            $query = sprintf($template_update, 
+                             mysqli_real_escape_string($link, $title),
+                             mysqli_real_escape_string($link, $category),
+                             mysqli_real_escape_string($link, $content),
+                             mysqli_real_escape_string($link, $date),
+                             mysqli_real_escape_string($link, $image),
+                             $id);
             
-        $query = sprintf($template_update, 
-                         mysqli_real_escape_string($link, $title),
-                         mysqli_real_escape_string($link, $category),
-                         mysqli_real_escape_string($link, $content),
-                         mysqli_real_escape_string($link, $date),
-                         mysqli_real_escape_string($link, $image),
-                         $id);
-        
-        $result = mysqli_query($link, $query);
-        
-        if (!result)
-            die(mysqli_error($link));
+            $result = mysqli_query($link, $query);
+            
+            if (!result)
+                die(mysqli_error($link));
+        } else {
+            // Запрос
+            $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s' WHERE id='%d'";
+                
+            $query = sprintf($template_update, 
+                             mysqli_real_escape_string($link, $title),
+                             mysqli_real_escape_string($link, $category),
+                             mysqli_real_escape_string($link, $content),
+                             mysqli_real_escape_string($link, $date),
+                             $id);
+            
+            $result = mysqli_query($link, $query);
+            
+            if (!result)
+                die(mysqli_error($link));
+        }
         
         return mysqli_affected_rows($link);
     }
@@ -122,8 +156,8 @@
         $query = sprintf("DELETE FROM articles WHERE id='%d'", $id);
         $result = mysqli_query($link, $query);
         
-        if (!result)
-            die(mysqli_error($link));
+        // if (!result)
+        //     die(mysqli_error($link));
         
         return mysqli_affected_rows($link);
     }

@@ -4,6 +4,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -4086,9 +4089,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .nav-pills > li {
   float: left;
+  padding: 4px;
 }
 .nav-pills > li > a {
   border-radius: 4px;
+
 }
 .nav-pills > li + li {
   margin-left: 2px;
@@ -4493,7 +4498,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background: rgba(255,255,255, 0.8);
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {
@@ -5264,7 +5269,7 @@ a.thumbnail.active {
 }
 a.list-group-item,
 button.list-group-item {
-  color: #555;
+  background: rgba(255,255,225, 0.75);
 }
 a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
@@ -5684,6 +5689,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-default {
   border-color: #ddd;
+  background: rgba(223,232,237, 0.8);
 }
 .panel-default > .panel-heading {
   color: #333;
