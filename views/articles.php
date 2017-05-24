@@ -11,7 +11,7 @@
     <head>
         <link rel="shortcut icon" href="../map.ico" type="image/x-icon">
         <meta charset="utf-8">
-        <title>The tourists app</title>
+        <title>Веб-довідник для туристів</title>
         
 <!--         <link rel="shortcut icon" href="../map.png" type="image/png"> -->
         <link rel="stylesheet" href="../css/style.css">
@@ -57,7 +57,7 @@
                         <a style="padding:5px 10px 5px 10px" class="navbar-brand" href="index.php">
                             <img style="width:40px; height:100%" alt="Brand" src="../map_by_artdesigner.png">
                         </a>
-                        <a  class="navbar-brand" href="index.php">The tourists app</a>
+                        <a  class="navbar-brand" href="index.php">Веб-довідник для туристів</a>
 
                     </div>
                   
@@ -141,7 +141,7 @@
             
             <footer>
                 <p>
-                    The tourists app<br>Copyright &copy; 2016
+                    Веб-довідник для туристів<br>Copyright &copy; 2017
                 </p>
             </footer>
         </div>
