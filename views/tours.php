@@ -1,8 +1,8 @@
 <?php
     session_start();
     $i=0;
-    foreach($articles as $article):
-        $arr[$i] = $article['coords'];
+    foreach($tours as $tour):
+        $arr[$i] = $tour['coords'];
         $i++;
     endforeach;
 ?>
@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
         
             <script type="text/javascript">
                 var myMap;
@@ -35,10 +35,12 @@
                     }, {
                         searchControlProvider: 'yandex#search'
                     });
-                    <?php for ($k = 0; $k <$i; $k++) {  ?>
+                    <?php foreach($tours as $tour):  ?>
                         myMap.geoObjects
-                            .add (new ymaps.Placemark([<?php echo $arr[$k]; ?>]));
-                    <?php };?>
+                            .add (new ymaps.Placemark([<?php echo $tour['coords']; ?>], {
+                            balloonContent: '<a href="tour.php?id=<?=$tour['id']?>"><?php echo $tour['title']; ?></a>'
+                        }));
+                    <?php endforeach;?>
                     
                     var myClusterer = new ymaps.Clusterer();
                     myClusterer.add(myGeoObjects);
@@ -125,15 +127,15 @@
             </div>
             <div class="container content">
                     <div class="col-md-9">
-                        <?php foreach($articles as $article): ?>
-                        <div class="article col-md-9 panel panel-default">
-                            <h3><a href="article.php?id=<?=$article['id']?>"><?=$article['title']?></a></h3>
-                            <b>Категория:</b> <?=$article['category']?><br>
-                            <em>Добавлено: <?=$article['date']?></em>
-                            <p><?=articles_intro($article['content'])?></p>
+                        <?php foreach($tours as $tour): ?>
+                        <div class="tour col-md-9 panel panel-default">
+                            <h3><a href="tour.php?id=<?=$tour['id']?>"><?=$tour['title']?></a></h3>
+                            <b>Категория:</b> <?=$tour['category']?><br>
+                            <em>Добавлено: <?=$tour['date']?></em>
+                            <p><?=tours_intro($tour['content'])?></p>
                         </div>
-                        <div class="article col-md-2">
-                            <img class=" article img-responsive img-thumbnail" src="<?=$article['image']?>" alt="Зображення">
+                        <div class="tour col-md-2">
+                            <img class=" tour img-responsive img-thumbnail" src="<?=$tour['image']?>" alt="Зображення">
                         </div>
                         <?php endforeach ?>
                     </div>

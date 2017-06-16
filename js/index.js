@@ -13,17 +13,7 @@ ymaps.ready(init);
                         myMap.events.add('click', function (e) {
                             var coords = e.get('coords');  
                             alert (coords);  
-//                            var distance = 2;
-// $(document).ready(function(){
-//     $.ajax({
-//         url: "../admin/index.php",
-//         type: "POST",
-//         data: "distance="+distance,
-//         success: function(responseText){
-//             alert(responseText);
-//         }
-//     });
-// });
+
                             // Если метка уже создана – просто передвигаем ее.
                             if (myPlacemark) {
                                 myPlacemark.geometry.setCoordinates(coords);

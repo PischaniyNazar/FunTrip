@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
         <script type="text/javascript">
                 var myMap;
                 // Дождёмся загрузки API и готовности DOM.
@@ -29,7 +29,7 @@
                     });
             
                     myMap.geoObjects
-                        .add (new ymaps.Placemark([<?php echo $article['coords']; ?>]));
+                        .add (new ymaps.Placemark([<?php echo $tour['coords']; ?>]));
                 }
             </script>
     </head>
@@ -69,13 +69,13 @@
             </nav> 
             <!-- END Header -->
             <!-- Content -->
-            <div class="article">
+            <div class="tour">
                 
-                <h3><?=$article['title']?></h3>
-                <b>Категорія:</b> <?=$article['category']?><br>
-                <em>Добавлено: <?=$article['date']?></em>
-                <p class="enter panel panel-default"><?=$article['content']?></p>
-                <img class="img-responsive img-thumbnail" src="<?=$article['image']?>" alt="Зображення">
+                <h3><?=$tour['title']?></h3>
+                <b>Категорія:</b> <?=$tour['category']?><br>
+                <em>Добавлено: <?=$tour['date']?></em>
+                <p class="enter panel panel-default"><?=$tour['content']?></p>
+                <img class="img-responsive img-thumbnail" src="<?=$tour['image']?>" alt="Зображення">
             </div>
             <div id="map" style="width:100%; height:450px"></div>
             <!-- END Content -->

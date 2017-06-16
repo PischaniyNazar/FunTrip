@@ -1,7 +1,7 @@
 <?php
-    function articles_all($link){
+    function tours_all($link){
     // Формируем запрос
-        $query = "SELECT * FROM articles ORDER BY id DESC";
+        $query = "SELECT * FROM tours ORDER BY id DESC";
         $result = mysqli_query($link, $query);
         
         if(!$result)
@@ -9,20 +9,20 @@
         
     // Извлекаем данные
         $n = mysqli_num_rows($result);
-        $articles = array();
+        $tours = array();
         
         for ($i = 0; $i < $n; $i++)
         {
             $row = mysqli_fetch_assoc($result);
-            $articles[] = $row;
+            $tours[] = $row;
         }
         
-        return $articles;
+        return $tours;
     }
 
     function view_category($link, $category){
     // Формируем запрос
-        $query = "SELECT * FROM articles WHERE category='".$category."' ORDER BY id DESC";
+        $query = "SELECT * FROM tours WHERE category='".$category."' ORDER BY id DESC";
         $result = mysqli_query($link, $query);
         
         if(!$result)
@@ -39,19 +39,19 @@
         return $category;  
     }
 
-    function article_get($link, $id_article){
-        $query = sprintf("SELECT * FROM articles WHERE id=%d", (int)$id_article);
+    function tour_get($link, $id_tour){
+        $query = sprintf("SELECT * FROM tours WHERE id=%d", (int)$id_tour);
         $result = mysqli_query($link, $query);
         
         if (!$result)
             die(mysqli_error($link));
         
-        $article = mysqli_fetch_assoc($result);
+        $tour = mysqli_fetch_assoc($result);
         
-        return $article;
+        return $tour;
     }
 
-    function articles_new($link, $title, $category, $date, $content, $image){
+    function tours_new($link, $userLogin, $title, $category, $date, $content, $image){
 
         // Подготовка
         $title = trim($title);
@@ -62,9 +62,10 @@
             return false;
         if ($image !==null){
             // Запрос
-            $template_add = "INSERT INTO articles (title, category, date, content, image) VALUES ('%s','%s', '%s', '%s', '%s')";
+            $template_add = "INSERT INTO tours (userLogin, title, category, date, content, image) VALUES ('%s','%s','%s', '%s', '%s', '%s')";
             
             $query = sprintf($template_add, 
+                             mysqli_real_escape_string($link, $userLogin),
                              mysqli_real_escape_string($link, $title),
                              mysqli_real_escape_string($link, $category),
                              mysqli_real_escape_string($link, $date),
@@ -80,9 +81,10 @@
            
         } else{
             // Запрос
-            $template_add = "INSERT INTO articles (title, category, date, content) VALUES ('%s','%s', '%s', '%s')";
+            $template_add = "INSERT INTO tours (userLogin, title, category, date, content) VALUES ('%s','%s','%s', '%s', '%s')";
             
             $query = sprintf($template_add, 
+                             mysqli_real_escape_string($link, $userLogin),
                              mysqli_real_escape_string($link, $title),
                              mysqli_real_escape_string($link, $category),
                              mysqli_real_escape_string($link, $date),
@@ -97,7 +99,7 @@
         return true;
     }
 
-    function articles_edit($link, $id, $title, $category, $date, $content, $image){
+    function tours_edit($link, $id, $title, $category, $date, $content, $image){
         // Подготовка
         $title = trim($title);
         $category = trim($category);
@@ -112,7 +114,7 @@
         if ($image !==null){
             $image = trim($image);
             // Запрос
-            $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s', image='%s' WHERE id='%d'";
+            $template_update = "UPDATE tours SET title='%s', category='%s', content='%s', date='%s', image='%s' WHERE id='%d'";
                 
             $query = sprintf($template_update, 
                              mysqli_real_escape_string($link, $title),
@@ -128,7 +130,7 @@
                 die(mysqli_error($link));
         } else {
             // Запрос
-            $template_update = "UPDATE articles SET title='%s', category='%s', content='%s', date='%s' WHERE id='%d'";
+            $template_update = "UPDATE tours SET title='%s', category='%s', content='%s', date='%s' WHERE id='%d'";
                 
             $query = sprintf($template_update, 
                              mysqli_real_escape_string($link, $title),
@@ -146,14 +148,14 @@
         return mysqli_affected_rows($link);
     }
 
-    function articles_delete($link, $id){
+    function tours_delete($link, $id){
         $id = (int)$id;
         // Проверка
         if ($id == 0)
             return false;
         
         // Запрос
-        $query = sprintf("DELETE FROM articles WHERE id='%d'", $id);
+        $query = sprintf("DELETE FROM tours WHERE id='%d'", $id);
         $result = mysqli_query($link, $query);
         
         // if (!result)
@@ -162,7 +164,7 @@
         return mysqli_affected_rows($link);
     }
 
-    function articles_intro($text, $len = 500)
+    function tours_intro($text, $len = 500)
     {
         return mb_substr($text, 0, $len);        
     }

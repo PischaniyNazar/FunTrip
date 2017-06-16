@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
     </head>
     <body>
         <div class="container">
@@ -42,19 +42,37 @@
                         <th></th>
                         <th></th>
                     </tr>
-                    <?php foreach($articles as $article): ?>
-                        <tr>
-                            <td><?=$article['date']?></td>
-                            <td><?=articles_intro($article['title'], 80)?></td>
-                            <td><?=$article['category']?></td>
-                            <td>
-                                <a style="color: rgb(0, 0, 0)" href="index.php?action=edit&id=<?=$article['id']?>">Редактировать</a>
-                            </td>
-                            <td>
-                                <a style="color: rgb(0, 0, 0)" href="index.php?action=delete&id=<?=$article['id']?>">Удалить</a>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
+                    <?php if ($_SESSION['login']=='admin') {
+                        foreach($tours as $tour):?>
+                            <tr>
+                                <td><?=$tour['date']?></td>
+                                <td><?=tours_intro($tour['title'], 80)?></td>
+                                <td><?=$tour['category']?></td>
+                                <td>
+                                    <a style="color: rgb(0, 0, 0)" href="index.php?action=edit&id=<?=$tour['id']?>">Редагувати</a>
+                                </td>
+                                <td>
+                                    <a style="color: rgb(0, 0, 0)" href="index.php?action=delete&id=<?=$tour['id']?>">Видалити</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; 
+                    }else{
+                        foreach($tours as $tour): ?>
+                            <tr>
+                                <?php if ($tour['userLogin']==$_SESSION['login']) {?>
+                                <td><?=$tour['date']?></td>
+                                <td><?=tours_intro($tour['title'], 80)?></td>
+                                <td><?=$tour['category']?></td>
+                                <td>
+                                    <a style="color: rgb(0, 0, 0)" href="index.php?action=edit&id=<?=$tour['id']?>">Редагувати</a>
+                                </td>
+                                <td>
+                                    <a style="color: rgb(0, 0, 0)" href="index.php?action=delete&id=<?=$tour['id']?>">Видалити</a>
+                                </td>
+                                <?php }?>
+                            </tr>
+                        <?php endforeach; 
+                    }?>
                 </table>
             </div>
             <footer>

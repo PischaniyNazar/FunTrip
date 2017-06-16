@@ -1,5 +1,16 @@
 <?php
     session_start();
+    require_once("../database.php");
+    require_once("../models/tours.php");
+                        
+    $link = db_connect();
+    $category = view_category($link, $_GET["category"]);
+ 
+    $i=0;
+    foreach($category as $categories):
+        $arr[$i] = $categories['coords'];
+        $i++;
+    endforeach;
 ?>
 <!DOCTYPE html>
 <hmtl>
@@ -12,6 +23,36 @@
         <link rel="stylesheet" href="../css/style.css">
         <!-- Latest compiled and minified CSS -->
         <link href="../css/bootstrap.css" rel="stylesheet">
+        <script src="https://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
+        <script type="text/javascript">
+                var myMap;
+                // Дождёмся загрузки API и готовности DOM.
+                ymaps.ready(init);
+
+                function init () {
+                    // Создание экземпляра карты и его привязка к контейнеру с
+                    // заданным id ("map").
+                    myMap = new ymaps.Map('map', {
+                        // При инициализации карты обязательно нужно указать
+                        // её центр и коэффициент масштабирования.
+                        center: [49.25, 31.20],
+                        zoom: 6
+                    }, {
+                        searchControlProvider: 'yandex#search'
+                    });
+                    <?php foreach($category as $categories):  ?>
+                        myMap.geoObjects
+                            .add (new ymaps.Placemark([<?php echo $categories['coords']; ?>], {
+                            balloonContent: '<a href="../tour.php?id=<?=$categories['id']?>"><?php echo $categories['title']; ?></a>'
+                        }));
+                    <?php endforeach;?>
+                    
+                    var myClusterer = new ymaps.Clusterer();
+                    myClusterer.add(myGeoObjects);
+                    myMap.geoObjects.add(myClusterer);
+
+                }
+            </script>
     </head>
     <body>
         <div class="container">
@@ -80,22 +121,19 @@
                     </div>
 
                     <div class="col-md-9">
+                        <p>Карта України</p>
+                        <div id="map" style="width:100%; height:450px"></div>
                         <?php 
-                        require_once("../database.php");
-                        require_once("../models/articles.php");
                         
-                        $link = db_connect();
-                        $category = view_category($link, $_GET["category"]);
-                     
                         foreach($category as $categories): ?>
-                        <div class="article col-md-9">
-                            <h3><a href="../article.php?id=<?=$categories['id']?>"><?=$categories['title']?></a></h3>
+                        <div class="tour col-md-9 panel panel-default">
+                            <h3><a href="../tour.php?id=<?=$categories['id']?>"><?=$categories['title']?></a></h3>
                             <b>Категорія:</b> <?=$categories['category']?><br>
                             <em>Дата: <?=$categories['date']?></em>
-                            <p><?=articles_intro($categories['content'])?></p>
+                            <p><?=tours_intro($categories['content'])?></p>
                         </div>
-                        <div class="article col-md-2">
-                            <img class=" article img-responsive img-thumbnail" src="<?=$categories['image']?>" alt="Зображення">
+                        <div class="tour col-md-2">
+                            <img class=" tour img-responsive img-thumbnail" src="<?=$categories['image']?>" alt="Зображення">
                         </div>
                         <?php endforeach ?>
                     </div>

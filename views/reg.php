@@ -23,7 +23,7 @@
             <!--**** save_user.php - это адрес обработчика.  То есть, после нажатия на кнопку "Зарегистрироваться", данные из полей  отправятся на страничку save_user.php методом "post" ***** -->
         <div class="form-group col-xs-10">
 
-            <label class="control-label col-xs-2"><h4>Ваш логін:</h4></label>
+            <label class="control-label col-xs-3"><h4>Придумайте логін:</h4></label>
             <div class="col-xs-8">
             <input class="form-control" name="login" type="text" size="15" maxlength="15">
         </div>
@@ -32,7 +32,7 @@
         <!--**** В текстовое поле (name="login" type="text") пользователь вводит свой логин ***** -->
         <div class="form-group col-xs-10">
 
-            <label class="control-label col-xs-2"><h4>Ваш пароль:</h4></label>
+            <label class="control-label col-xs-3"><h4>Придумайте пароль:</h4></label>
             <div class="col-xs-8">
             <input class="form-control" name="password" type="password" size="15" maxlength="15">
             </div>

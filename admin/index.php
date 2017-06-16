@@ -1,16 +1,17 @@
 <?php 
+    session_start();
+
     require_once("../database.php");
-    
-    require_once("../models/articles.php");
+    require_once("../models/tours.php");
 
         
     $link = db_connect();
     
-    $article['title']='';
-    $article['category']='';
-    $article['date']='';
-    $article['content']='';
-    $article['image']='';
+    $tour['title']='';
+    $tour['category']='';
+    $tour['date']='';
+    $tour['content']='';
+    $tour['image']='';
 
     if(isset($_GET['action']))
         $action = $_GET['action'];
@@ -19,15 +20,29 @@
     
     if($action == "add"){
 
+                       
+
+
         if(!empty($_POST)){
+             if (isset($_GET['u_name']))
+                        {
+                            echo "Значение JavaScript-переменной: ". $_GET['u_name'];
+                        }
+
+                        else
+                        {
+                            
+                            exit();
+                        }
             
             include("../models/load_image.php");
             
-            articles_new($link, $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content'], $uploadfile);
+            tours_new($link, $_SESSION['login'], $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content'], $uploadfile);
 
             header("Location: index.php");
         }
-        include("../views/article_admin.php");
+        include("../views/tour_admin.php");
+
     }else if($action == 'edit'){
         if(!isset($_GET['id']))
             header('Location: index.php');
@@ -35,20 +50,20 @@
         
         if(!empty($_POST) && $id > 0) {
             include("../models/load_image.php");
-            articles_edit($link, $id, $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content'], $uploadfile);
+            tours_edit($link, $id, $_POST['title'], $_POST['category'], $_POST['date'], $_POST['content'], $uploadfile);
             header("Location: index.php");
         }
         
-        $article = article_get($link, $id);
-        include("../views/article_admin.php");  
+        $tour = tour_get($link, $id);
+        include("../views/tour_admin.php");  
     }else if($action == 'delete'){
         $id = $_GET['id'];
-        $article = articles_delete($link, $id);
+        $tour = tours_delete($link, $id);
         header('Location: index.php');
     }
     else{
-        $articles = articles_all($link);
-        include("../views/articles_admin.php");        
+        $tours = tours_all($link);
+        include("../views/tours_admin.php");        
     }
          
 

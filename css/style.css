@@ -15,17 +15,17 @@ footer {
 .reg{
     text-align: center;  
 }
-.article {
+.tour {
     margin-top: 30px;
     margin-bottom: 35px;
     overflow: hidden;
 }
 
-.article em {
+.tour em {
     color: rgb(119, 119, 119);
 }
 
-.article h3 {
+.tour h3 {
     font-size: 20px;
 }
 
